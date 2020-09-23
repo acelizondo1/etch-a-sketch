@@ -11,14 +11,39 @@ let grid = document.querySelector('#container');
 /*Randomly generates rgb value, checks for current rgb value if set then darkens by 10%
 *returns rgb value
 */
-let generateRgb = () => {
+let generateRgb = (rgb=null) => {
+    let rValue;
+    let gValue;
+    let bValue;
 
+    if(rgb == null){
+        rValue = Math.round(Math.random() * 255);
+        gValue = Math.round(Math.random() * 255);
+        bValue = Math.round(Math.random() * 255);
+    }else{
+        let values = rgb.split(",");
+        let value1 = values[0].split('(')[1];
+        let value2 = values[1];
+        let value3 = values[2].split(')');
+        rValue = Math.round(parseInt(value1)*0.8);
+        gValue = Math.round(parseInt(value2)*0.8);
+        bValue = Math.round(parseInt(value3)*0.8);
+    }
+
+    return `rgb(${rValue}, ${gValue}, ${bValue})`;
 };
 
 /*Changes the background color of a triggered cell to a random rbg value
 */
 let highlightCell = (e) => {
-    e.path[0].style.backgroundColor = 'black';
+    let backgroundColor = e.path[0].style.backgroundColor;
+    
+    if(!backgroundColor){
+        e.path[0].style.backgroundColor = generateRgb();
+    }else{
+        e.path[0].style.backgroundColor = generateRgb(backgroundColor);
+     }
+    
 };
 
 
