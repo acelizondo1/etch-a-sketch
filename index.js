@@ -17,8 +17,8 @@ let generateRgb = () => {
 
 /*Changes the background color of a triggered cell to a random rbg value
 */
-let highlightCell = () => {
-
+let highlightCell = (e) => {
+    e.path[0].style.backgroundColor = 'black';
 };
 
 
@@ -29,6 +29,9 @@ let generateCell = () => {
     let newCell = document.createElement('div');
     newCell.className = 'gridCell';
     newCell.setAttribute('style', `width:${cellWidth}px;`);
+    newCell.addEventListener('mouseenter', (e) => {
+        highlightCell(e);
+    });
     return newCell;
 };
 
