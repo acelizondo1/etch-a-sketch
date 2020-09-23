@@ -7,6 +7,7 @@ let cellHeight;
 let cellWidth;
 //Important DOM elements
 let grid = document.querySelector('#container');
+let reset = document.querySelector('#resetSketch');
 
 /*Randomly generates rgb value, checks for current rgb value if set then darkens by 10%
 *returns rgb value
@@ -64,7 +65,11 @@ let generateCell = () => {
 *returns error message or int
 */
 let promptUserInput = () => {
-
+    let userInput = parseInt(prompt('Choose a grid size'));
+    if(userInput != null && userInput >= 2 && userInput <= 64){
+        cellNumber = userInput;
+    }
+    return userInput;
 };
 
 /*Creates grid based off cellNumber, checks if current grid is empty, if not then resets
@@ -85,14 +90,26 @@ let generateGrid = () => {
 /*Prompts user for new grid size, resets current grid and runs generateGrid with new value
 */
 let resetGrid = () => {
+    let prompt = promptUserInput();
 
+    if(prompt != null && prompt >= 2 && prompt <= 64){
+        if(grid.childNodes != null){
+            grid.innerHTML = "";
+        }
+        generateGrid();
+    }else{
+        alert('Invalid entry. Please enter a number between 2 and 64');
+    }
 };
 
 /*Prompts user on start 
 */
 let startGrid = () => {
-
+    resetGrid();
+    reset.addEventListener('click', () => {
+        resetGrid();
+    });
 };
 
 //Start the Grid 
-generateGrid();
+startGrid();
