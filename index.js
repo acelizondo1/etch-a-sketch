@@ -102,7 +102,7 @@ let resetGrid = () => {
     }
 };
 
-/*Prompts user on start 
+/*Starts game while initializing listener for reset button
 */
 let startGrid = () => {
     resetGrid();
