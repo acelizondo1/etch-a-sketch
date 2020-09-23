@@ -9,12 +9,17 @@ body{
     font-size: 1.25rem;
 }
 
-.container{
-    width: 600px;
-    height: 450px;
-    display: grid;
-    grid-gap: 0px 0px;
+#container{
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
     margin: auto;
     padding: 0;
     border: 2px solid black;
+}
+
+.gridCell{
+    margin: 0;
+    padding: 0;
 }
